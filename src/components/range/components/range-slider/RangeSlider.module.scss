@@ -1,0 +1,9 @@
+$slider-height: 10px;
+
+.container {
+  position: absolute;
+  transform: translateY(-50%);
+  width: 100%;
+  height: $slider-height;
+  background-color: black;
+}

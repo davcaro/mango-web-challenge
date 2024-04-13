@@ -1,0 +1,23 @@
+$bullet-size: 20px;
+$bullet-hover-size: 25px;
+$bullet-hover-transition: 200ms;
+
+.bullet {
+  position: absolute;
+  transform: translate(-50%, -50%);
+
+  width: $bullet-size;
+  height: $bullet-size;
+  transition:
+    width $bullet-hover-transition,
+    height $bullet-hover-transition;
+
+  border-radius: 50%;
+  background-color: red;
+
+  &:hover {
+    cursor: grab;
+    width: $bullet-hover-size;
+    height: $bullet-hover-size;
+  }
+}
