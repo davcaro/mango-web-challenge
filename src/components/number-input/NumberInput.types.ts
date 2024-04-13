@@ -1,3 +1,6 @@
 export interface PropTypes {
-  value: number;
+  min?: number;
+  max?: number;
+  value?: number;
+  onChange?: (value: number) => void;
 }
