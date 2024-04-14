@@ -1,24 +1,31 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useFetch } from '@/hooks';
+import { BasicRange } from '@/types/Range';
 import { Range } from '@/components/range';
 import styles from './Exercise1.module.scss';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const Exercise1 = () => {
+  const [values, setValues] = useState<BasicRange | null>(null);
+  const { data, isLoading, error } = useFetch<BasicRange>('basic');
 
-async function getData() {
-  const res = await fetch(`${API_URL}/basic`);
+  useEffect(() => {
+    if (data) {
+      setValues(data);
+    }
+  }, [data]);
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
+  if (data && values) {
+    return (
+      <div className={styles.container}>
+        <Range min={data.min} max={data.max} values={values} onChange={setValues} />
+      </div>
+    );
   }
 
-  return res.json();
-}
+  if (isLoading) return <div>Loading...</div>;
+  return <div>Error: {error?.message}</div>;
+};
 
-export default async function Exercise1() {
-  const data = await getData();
-
-  return (
-    <div className={styles.container}>
-      <Range min={data.min} max={data.max} />
-    </div>
-  );
-}
+export default Exercise1;
