@@ -1,3 +1,5 @@
+export const round = (value: number): number => Math.round(value * 100) / 100;
+
 export const getValueWithinRange = (value: number, min?: number, max?: number): number => {
   if (typeof min === 'number' && value < min) return min;
   if (typeof max === 'number' && value > max) return max;

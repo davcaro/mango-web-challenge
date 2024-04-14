@@ -1,6 +1,6 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { BasicRange } from '@/types/Range';
-import { getValueWithinRange } from '@/utils/numbers-range';
+import { getValueWithinRange, round } from '@/utils/numbers-range';
 import { BulletType } from '@/components/range/Range.types';
 
 interface PropTypes {
@@ -25,7 +25,7 @@ export const useRangeSlider = ({ sliderRef, min, max, values, onChange }: PropTy
       const positionInScale = (bulletRelativePosition * range) / sliderWidth + min; // Cross-multiplication to scale value + min
 
       const positionInScaleWithinRange = getValueWithinRange(
-        positionInScale,
+        round(positionInScale),
         draggingBullet === BulletType.Min ? min : values.min,
         draggingBullet === BulletType.Max ? max : values.max,
       );
