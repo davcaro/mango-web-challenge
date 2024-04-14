@@ -6,6 +6,21 @@ export const getValueWithinRange = (value: number, min?: number, max?: number): 
   return value;
 };
 
+export const getNearestStep = (value: number, steps: number[]): number => {
+  let closest = steps[0];
+
+  for (let i = 1; i < steps.length; i++) {
+    const currentDiff = Math.abs(steps[i] - value);
+    const closestDiff = Math.abs(closest - value);
+
+    if (currentDiff < closestDiff) {
+      closest = steps[i];
+    }
+  }
+
+  return closest;
+};
+
 export const getPercentageWithinRange = (value: number, min: number, max: number): number => {
   const range = max - min;
   const diff = value - min;

@@ -1,17 +1,18 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { BasicRange } from '@/types/Range';
-import { getValueWithinRange, round } from '@/utils/numbers-range';
+import { getNearestStep, getValueWithinRange, round } from '@/utils/numbers-range';
 import { BulletType } from '@/components/range/Range.types';
 
 interface PropTypes {
   sliderRef: RefObject<HTMLDivElement>;
   min: number;
   max: number;
+  steps?: number[];
   values: BasicRange;
   onChange: (values: BasicRange) => void;
 }
 
-export const useRangeSlider = ({ sliderRef, min, max, values, onChange }: PropTypes) => {
+export const useRangeSlider = ({ sliderRef, min, max, steps, values, onChange }: PropTypes) => {
   const [draggingBullet, setDraggingBullet] = useState<BulletType | null>(null);
 
   const onBulletMove = useCallback(
@@ -23,9 +24,10 @@ export const useRangeSlider = ({ sliderRef, min, max, values, onChange }: PropTy
       const range = max - min;
       const bulletRelativePosition = bulletPosition - sliderLeft;
       const positionInScale = (bulletRelativePosition * range) / sliderWidth + min; // Cross-multiplication to scale value + min
+      const finalPosition = steps ? getNearestStep(positionInScale, steps) : round(positionInScale);
 
       const positionInScaleWithinRange = getValueWithinRange(
-        round(positionInScale),
+        finalPosition,
         draggingBullet === BulletType.Min ? min : values.min,
         draggingBullet === BulletType.Max ? max : values.max,
       );
@@ -35,7 +37,7 @@ export const useRangeSlider = ({ sliderRef, min, max, values, onChange }: PropTy
         [draggingBullet === BulletType.Min ? 'min' : 'max']: positionInScaleWithinRange,
       });
     },
-    [draggingBullet, max, min, onChange, sliderRef, values],
+    [draggingBullet, max, min, onChange, sliderRef, steps, values],
   );
 
   const handleMouseMove = useCallback(

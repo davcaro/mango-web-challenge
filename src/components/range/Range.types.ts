@@ -1,8 +1,9 @@
 import { BasicRange } from '@/types/Range';
 
 export interface PropTypes {
-  min: number;
-  max: number;
+  min?: number;
+  max?: number;
+  steps?: number[];
   values: BasicRange;
   onChange: (values: BasicRange) => void;
 }

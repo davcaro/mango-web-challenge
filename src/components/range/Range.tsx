@@ -7,13 +7,17 @@ import { RangeBullet } from './components/range-bullet';
 import { BulletType, PropTypes } from './Range.types';
 import styles from './Range.module.scss';
 
-export const Range: FC<PropTypes> = ({ min, max, values, onChange }) => {
+export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
+
+  const sliderMin = min ?? steps?.at(0) ?? 0;
+  const sliderMax = max ?? steps?.at(-1) ?? 0;
 
   const { onDragStart } = useRangeSlider({
     sliderRef,
-    min,
-    max,
+    min: sliderMin,
+    max: sliderMax,
+    steps,
     values,
     onChange,
   });
@@ -27,21 +31,21 @@ export const Range: FC<PropTypes> = ({ min, max, values, onChange }) => {
 
   return (
     <div className={styles.container}>
-      <NumberInput min={min} max={values.max} value={values.min} onChange={handleMinInputChange} />
+      <NumberInput min={sliderMin} max={values.max} value={values.min} onChange={handleMinInputChange} />
 
       <div ref={sliderRef} className={styles.sliderWrapper}>
         <RangeSlider />
         <RangeBullet
-          position={getPercentageWithinRange(values.min, min, max)}
+          position={getPercentageWithinRange(values.min, sliderMin, sliderMax)}
           onMouseDown={() => onDragStart(BulletType.Min)}
         />
         <RangeBullet
-          position={getPercentageWithinRange(values.max, min, max)}
+          position={getPercentageWithinRange(values.max, sliderMin, sliderMax)}
           onMouseDown={() => onDragStart(BulletType.Max)}
         />
       </div>
 
-      <NumberInput min={values.min} max={max} value={values.max} onChange={handleMaxInputChange} />
+      <NumberInput min={values.min} max={sliderMax} value={values.max} onChange={handleMaxInputChange} />
     </div>
   );
 };
