@@ -3,4 +3,6 @@ export interface PropTypes {
   max?: number;
   value?: number;
   onChange?: (value: number) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }

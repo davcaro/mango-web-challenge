@@ -1,7 +1,7 @@
 import { FC, useRef } from 'react';
 import { useRangeSlider } from '@/hooks';
 import { getPercentageWithinRange } from '@/utils/numbers-range';
-import { NumberInput } from '@/components/number-input';
+import { RangeInput } from './components/range-input';
 import { RangeSlider } from './components/range-slider';
 import { RangeBullet } from './components/range-bullet';
 import { BulletType, PropTypes } from './Range.types';
@@ -31,7 +31,7 @@ export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
 
   return (
     <div className={styles.container}>
-      <NumberInput min={sliderMin} max={values.max} value={values.min} onChange={handleMinInputChange} />
+      <RangeInput min={sliderMin} max={values.max} steps={steps} value={values.min} onChange={handleMinInputChange} />
 
       <div ref={sliderRef} className={styles.sliderWrapper}>
         <RangeSlider />
@@ -45,7 +45,7 @@ export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
         />
       </div>
 
-      <NumberInput min={values.min} max={sliderMax} value={values.max} onChange={handleMaxInputChange} />
+      <RangeInput min={values.min} max={sliderMax} steps={steps} value={values.max} onChange={handleMaxInputChange} />
     </div>
   );
 };
