@@ -1,0 +1,13 @@
+.line {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 12px;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--tertiary-color);
+
+  &.selectedSegment {
+    background-color: var(--primary-color);
+  }
+}

@@ -3,6 +3,7 @@ import { useRangeSlider } from '@/hooks';
 import { getPercentagePosition, getPercentageSliderWidth } from '@/utils/numbers-range';
 import { RangeInput } from './components/range-input';
 import { RangeSlider } from './components/range-slider';
+import { RangeStepMark } from './components/range-step-mark';
 import { RangeBullet } from './components/range-bullet';
 import { BulletType, PropTypes } from './Range.types';
 import styles from './Range.module.scss';
@@ -40,6 +41,14 @@ export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
           position={getPercentagePosition(values.min, sliderMin, sliderMax, steps)}
           width={getPercentageSliderWidth(values.min, values.max, sliderMin, sliderMax, steps)}
         />
+
+        {steps?.map((step) => (
+          <RangeStepMark
+            key={step}
+            position={getPercentagePosition(step, sliderMin, sliderMax, steps)}
+            isInSelectedSegment={step >= values.min && step <= values.max}
+          />
+        ))}
 
         <RangeBullet
           position={getPercentagePosition(values.min, sliderMin, sliderMax, steps)}

@@ -1,10 +1,9 @@
-$slider-height: 3px;
-
 .container {
   position: absolute;
   transform: translateY(-50%);
   width: 100%;
-  height: $slider-height;
+  height: 3px;
+  border-radius: 0.5rem;
   background-color: var(--tertiary-color);
 }
 
