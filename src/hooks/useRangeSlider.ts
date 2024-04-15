@@ -1,6 +1,6 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { BasicRange } from '@/types/Range';
-import { getNearestStep, getValueWithinRange, round } from '@/utils/numbers-range';
+import { getNearestStepByBulletPosition, getValueWithinRange, round } from '@/utils/numbers-range';
 import { BulletType } from '@/components/range/Range.types';
 
 interface PropTypes {
@@ -21,11 +21,19 @@ export const useRangeSlider = ({ sliderRef, min, max, steps, values, onChange }:
       const sliderLeft = sliderPosition?.left ?? 0;
       const sliderWidth = sliderPosition?.width ?? 0;
 
-      const range = max - min;
       const bulletRelativePosition = bulletPosition - sliderLeft;
-      const positionInScale = (bulletRelativePosition * range) / sliderWidth + min; // Cross-multiplication to scale value + min
-      const finalPosition = steps ? getNearestStep(positionInScale, steps) : Math.round(positionInScale);
 
+      let finalPosition;
+      if (steps) {
+        finalPosition = getNearestStepByBulletPosition(bulletRelativePosition, sliderWidth, steps);
+      } else {
+        const range = max - min;
+        const positionInScale = (bulletRelativePosition * range) / sliderWidth; // Cross-multiplication to scale value
+        const positionInRange = positionInScale + min;
+        finalPosition = Math.round(positionInRange);
+      }
+
+      // Avoid bullets to cross each other
       const positionInScaleWithinRange = getValueWithinRange(
         finalPosition,
         draggingBullet === BulletType.Min ? min : values.min,

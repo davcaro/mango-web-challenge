@@ -1,6 +1,6 @@
 import { FC, useRef } from 'react';
 import { useRangeSlider } from '@/hooks';
-import { getPercentagePosition, getPercentageWidth } from '@/utils/numbers-range';
+import { getPercentagePosition, getPercentageSliderWidth } from '@/utils/numbers-range';
 import { RangeInput } from './components/range-input';
 import { RangeSlider } from './components/range-slider';
 import { RangeBullet } from './components/range-bullet';
@@ -37,17 +37,17 @@ export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
         <RangeSlider />
         <RangeSlider
           isSelectedSegment
-          position={getPercentagePosition(values.min, sliderMin, sliderMax)}
-          width={getPercentageWidth(values.min, values.max, sliderMin, sliderMax)}
+          position={getPercentagePosition(values.min, sliderMin, sliderMax, steps)}
+          width={getPercentageSliderWidth(values.min, values.max, sliderMin, sliderMax, steps)}
         />
 
         <RangeBullet
-          position={getPercentagePosition(values.min, sliderMin, sliderMax)}
+          position={getPercentagePosition(values.min, sliderMin, sliderMax, steps)}
           onMouseDown={() => onDragStart(BulletType.Min)}
           isDragging={draggingBullet === BulletType.Min}
         />
         <RangeBullet
-          position={getPercentagePosition(values.max, sliderMin, sliderMax)}
+          position={getPercentagePosition(values.max, sliderMin, sliderMax, steps)}
           onMouseDown={() => onDragStart(BulletType.Max)}
           isDragging={draggingBullet === BulletType.Max}
         />
