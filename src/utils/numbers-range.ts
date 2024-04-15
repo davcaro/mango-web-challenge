@@ -21,8 +21,19 @@ export const getNearestStep = (value: number, steps: number[]): number => {
   return closest;
 };
 
-export const getPercentageWithinRange = (value: number, min: number, max: number): number => {
+export const getPercentagePosition = (value: number, min: number, max: number): number => {
   const range = max - min;
   const diff = value - min;
+  return (diff / range) * 100;
+};
+
+export const getPercentageWidth = (
+  minValue: number,
+  maxValue: number,
+  sliderMin: number,
+  sliderMax: number,
+): number => {
+  const range = sliderMax - sliderMin;
+  const diff = maxValue - minValue;
   return (diff / range) * 100;
 };

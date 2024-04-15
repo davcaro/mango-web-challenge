@@ -1,6 +1,24 @@
 import { FC, PropsWithChildren } from 'react';
+import { PropTypes } from './RangeSlider.types';
 import styles from './RangeSlider.module.scss';
 
-export const RangeSlider: FC<PropsWithChildren> = ({ children }) => {
-  return <div className={styles.container}>{children}</div>;
+export const RangeSlider: FC<PropsWithChildren<PropTypes>> = ({
+  isSelectedSegment,
+  position,
+  width,
+  children,
+  ...props
+}) => {
+  return (
+    <div
+      className={`${styles.container} ${isSelectedSegment ? styles.selectedSegment : null}`}
+      style={{
+        left: `${position}%`,
+        width: `${width}%`,
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
 };

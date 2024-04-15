@@ -1,9 +1,13 @@
-$slider-height: 10px;
+$slider-height: 3px;
 
 .container {
   position: absolute;
   transform: translateY(-50%);
   width: 100%;
   height: $slider-height;
-  background-color: black;
+  background-color: var(--tertiary-color);
+}
+
+.selectedSegment {
+  background-color: var(--primary-color);
 }
