@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useFetch } from '@/hooks';
 import { BasicRange } from '@/types/Range';
 import { Range } from '@/components/range';
-import styles from './Exercise1.module.scss';
 
 const Exercise1 = () => {
   const [values, setValues] = useState<BasicRange | null>(null);
@@ -17,11 +16,7 @@ const Exercise1 = () => {
   }, [data]);
 
   if (data && values) {
-    return (
-      <div className={styles.container}>
-        <Range min={data.min} max={data.max} values={values} onChange={setValues} />
-      </div>
-    );
+    return <Range min={data.min} max={data.max} values={values} onChange={setValues} />;
   }
 
   if (isLoading) return <div>Loading...</div>;
