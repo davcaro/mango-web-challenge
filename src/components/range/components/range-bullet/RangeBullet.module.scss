@@ -1,5 +1,5 @@
-$bullet-size: 20px;
-$bullet-hover-size: 25px;
+$bullet-size: 1rem;
+$bullet-hover-size: 1.25rem;
 $bullet-hover-transition: 200ms;
 
 .bullet {
@@ -13,11 +13,18 @@ $bullet-hover-transition: 200ms;
     height $bullet-hover-transition;
 
   border-radius: 50%;
-  background-color: red;
+  background-color: var(--primary-color);
+
+  &:hover,
+  &.dragging {
+    width: $bullet-hover-size;
+    height: $bullet-hover-size;
+  }
 
   &:hover {
     cursor: grab;
-    width: $bullet-hover-size;
-    height: $bullet-hover-size;
+  }
+  &.dragging {
+    cursor: grabbing;
   }
 }

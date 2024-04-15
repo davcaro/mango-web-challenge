@@ -13,7 +13,7 @@ export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
   const sliderMin = min ?? steps?.at(0) ?? 0;
   const sliderMax = max ?? steps?.at(-1) ?? 0;
 
-  const { onDragStart } = useRangeSlider({
+  const { draggingBullet, onDragStart } = useRangeSlider({
     sliderRef,
     min: sliderMin,
     max: sliderMax,
@@ -44,10 +44,12 @@ export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
         <RangeBullet
           position={getPercentagePosition(values.min, sliderMin, sliderMax)}
           onMouseDown={() => onDragStart(BulletType.Min)}
+          isDragging={draggingBullet === BulletType.Min}
         />
         <RangeBullet
           position={getPercentagePosition(values.max, sliderMin, sliderMax)}
           onMouseDown={() => onDragStart(BulletType.Max)}
+          isDragging={draggingBullet === BulletType.Max}
         />
       </div>
 
