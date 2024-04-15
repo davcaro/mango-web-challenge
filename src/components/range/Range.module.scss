@@ -1,11 +1,14 @@
 .container {
   display: flex;
   align-items: center;
-  gap: 25px;
   width: 100%;
+  padding: 1rem 0;
 }
 
 .sliderWrapper {
   position: relative;
   flex-grow: 1;
+
+  margin-left: 2rem;
+  margin-right: 1.5rem;
 }

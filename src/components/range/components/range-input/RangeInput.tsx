@@ -37,6 +37,7 @@ export const RangeInput: FC<PropTypes> = ({ min, max, steps, value, onChange }) 
       min={min}
       max={max}
       value={inputValue}
+      unit='€'
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
