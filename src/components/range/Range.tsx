@@ -32,14 +32,22 @@ export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
 
   return (
     <div className={styles.container}>
-      <RangeInput min={sliderMin} max={values.max} steps={steps} value={values.min} onChange={handleMinInputChange} />
+      <RangeInput
+        min={sliderMin}
+        max={values.max}
+        steps={steps}
+        value={values.min}
+        onChange={handleMinInputChange}
+        aria-label='Minimum input'
+      />
 
       <div ref={sliderRef} className={styles.sliderWrapper}>
-        <RangeSlider />
+        <RangeSlider data-testid='range-slider' />
         <RangeSlider
           isSelectedSegment
           position={getPercentagePosition(values.min, sliderMin, sliderMax, steps)}
           width={getPercentageSliderWidth(values.min, values.max, sliderMin, sliderMax, steps)}
+          data-testid='selected-range-slider'
         />
 
         {steps?.map((step) => (
@@ -47,6 +55,7 @@ export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
             key={step}
             position={getPercentagePosition(step, sliderMin, sliderMax, steps)}
             isInSelectedSegment={step >= values.min && step <= values.max}
+            aria-label={`Step ${step}€`}
           />
         ))}
 
@@ -54,15 +63,32 @@ export const Range: FC<PropTypes> = ({ min, max, steps, values, onChange }) => {
           position={getPercentagePosition(values.min, sliderMin, sliderMax, steps)}
           onMouseDown={() => onDragStart(BulletType.Min)}
           isDragging={draggingBullet === BulletType.Min}
+          role='slider'
+          aria-label='Minimum slider'
+          aria-valuenow={values.min}
+          aria-valuemin={sliderMin}
+          aria-valuemax={sliderMax}
         />
         <RangeBullet
           position={getPercentagePosition(values.max, sliderMin, sliderMax, steps)}
           onMouseDown={() => onDragStart(BulletType.Max)}
           isDragging={draggingBullet === BulletType.Max}
+          role='slider'
+          aria-label='Maximum slider'
+          aria-valuenow={values.max}
+          aria-valuemin={sliderMin}
+          aria-valuemax={sliderMax}
         />
       </div>
 
-      <RangeInput min={values.min} max={sliderMax} steps={steps} value={values.max} onChange={handleMaxInputChange} />
+      <RangeInput
+        min={values.min}
+        max={sliderMax}
+        steps={steps}
+        value={values.max}
+        onChange={handleMaxInputChange}
+        aria-label='Maximum input'
+      />
     </div>
   );
 };

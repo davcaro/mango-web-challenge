@@ -11,7 +11,7 @@ export const RangeSlider: FC<PropsWithChildren<PropTypes>> = ({
 }) => {
   return (
     <div
-      className={`${styles.container} ${isSelectedSegment ? styles.selectedSegment : null}`}
+      className={`${styles.container} ${isSelectedSegment ? styles.selectedSegment : ''}`}
       style={{
         left: `${position}%`,
         width: `${width}%`,

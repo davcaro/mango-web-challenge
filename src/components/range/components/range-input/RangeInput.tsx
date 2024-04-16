@@ -3,7 +3,7 @@ import { getNearestStep, getValueWithinRange, round } from '@/utils/numbers-rang
 import { PropTypes } from './RangeInput.types';
 import { NumberInput } from '@/components/number-input';
 
-export const RangeInput: FC<PropTypes> = ({ min, max, steps, value, onChange }) => {
+export const RangeInput: FC<PropTypes> = ({ min, max, steps, value, onChange, ...props }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<number>(value ?? 0);
 
@@ -41,6 +41,7 @@ export const RangeInput: FC<PropTypes> = ({ min, max, steps, value, onChange }) 
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      {...props}
     />
   );
 };
