@@ -1,7 +1,7 @@
 import { BasicRange } from '@/types/Range';
 
 export async function GET() {
-  const range: BasicRange = { min: 25, max: 150 };
+  const range: BasicRange = { min: 0, max: 100 };
 
   return Response.json(range);
 }

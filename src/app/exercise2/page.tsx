@@ -11,8 +11,8 @@ const Exercise2 = () => {
 
   useEffect(() => {
     if (data && data.length >= 2) {
-      const min = data.at(0) ?? 0;
-      const max = data.at(-1) ?? 0;
+      const min = data[0];
+      const max = data[data.length - 1];
       setValues({ min, max });
     }
   }, [data]);
