@@ -49,5 +49,7 @@ In addition, it is required to implement unit tests to check the correct behavio
 
 ## Result
 
+App is deployed at [mango-web-challenge.vercel.app](https://mango-web-challenge.vercel.app/) 🎉
+
 ![Exercise 1](./public/readme-assets/exercise1.png)
 ![Exercise 2](./public/readme-assets/exercise2.png)

@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export type FetchState<T> = {
   data: T | null;
   isLoading: boolean;
@@ -16,7 +14,7 @@ export const useFetch = <T>(url: string): FetchState<T> => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_URL}/${url}`);
+        const response = await fetch(`/api/${url}`); // Calls route handlers in /src/app/api folder
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
