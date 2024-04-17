@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MANGO WEB CHALLENGE
 
-## Getting Started
+Component Range that allows to select a minimum and a maximum value freely or in fixed amounts for the Mango Front-end coding challenge by David Caro Gallego.
 
-First, run the development server:
+## Installation
+
+The project has been developed with NodeJS v20.11.1
+
+Use pnpm package manager to install the necessary dependencies.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run the application in development mode
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+pnpm run dev
+```
 
-## Learn More
+Generate a production build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Locally preview the production build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+pnpm run start
+```
 
-## Deploy on Vercel
+## Coding challenge Requirements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The test consists of creating a Range component that allows the selection of a minimum and a maximum value. The component has 2 variants:
+- **Basic range**: Given minimum and maximum limits, it is possible to select any value in between.
+- **Fixed value range**: Only specific values can be selected.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The values can be selected by using numeric input fields or by dragging small bullets. In both variants, the limit values are obtained from an API request.<br/>
+In addition, it is required to implement unit tests to check the correct behavior of the component.
+
+## Dependencies
+
+- [NextJs](https://nextjs.org), the React framework used to build the application.
+- [Jest](https://jestjs.io) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) to write and run the unit tests.
+- [TypeScript](https://www.typescriptlang.org) to add static typing to the project.
+
+## Result
+
+![Exercise 1](./public/readme-assets/exercise1.png)
+![Exercise 2](./public/readme-assets/exercise2.png)
