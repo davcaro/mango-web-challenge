@@ -6,4 +6,5 @@ export interface PropTypes {
   onChange?: (value: number) => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  readOnly?: boolean;
 }

@@ -8,13 +8,13 @@ export const RangeInput: FC<PropTypes> = ({ min, max, steps, value, onChange, ..
   const [inputValue, setInputValue] = useState<number>(value ?? 0);
 
   const calculateValue = (newValue: number): number => {
-    const roundedValue = steps ? getNearestStep(newValue, steps) : round(newValue);
+    const roundedValue = round(newValue);
     return getValueWithinRange(roundedValue, min, max);
   };
 
   const handleChange = (newValue: number): void => {
     setInputValue(newValue);
-    onChange(calculateValue(newValue));
+    onChange?.(calculateValue(newValue));
   };
 
   const handleFocus = (): void => {
@@ -41,6 +41,7 @@ export const RangeInput: FC<PropTypes> = ({ min, max, steps, value, onChange, ..
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      readOnly={Boolean(steps)}
       {...props}
     />
   );

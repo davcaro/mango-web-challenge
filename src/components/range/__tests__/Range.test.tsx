@@ -73,22 +73,14 @@ describe('Range', () => {
     expect(mockOnChange).toHaveBeenLastCalledWith({ min: valuesBasicRange.min, max: 60 });
   });
 
-  it('should change minimum and maximum values and round to the closest step', async () => {
-    const user = userEvent.setup();
-
+  it('should render inputs as read only if steps are defined', () => {
     const { getByLabelText } = render(<Range steps={steps} values={valuesFixedRange} onChange={mockOnChange} />);
 
     const minimumInput = getByLabelText('Minimum input');
-    await user.clear(minimumInput);
-    await user.type(minimumInput, '23');
-
-    expect(mockOnChange).toHaveBeenLastCalledWith({ min: 20, max: valuesFixedRange.max });
-
     const maximumInput = getByLabelText('Maximum input');
-    await user.clear(maximumInput);
-    await user.type(maximumInput, '27');
 
-    expect(mockOnChange).toHaveBeenLastCalledWith({ min: valuesFixedRange.min, max: 30 });
+    expect(minimumInput).toHaveAttribute('readonly');
+    expect(maximumInput).toHaveAttribute('readonly');
   });
 
   it('should render a slider with bullets', () => {

@@ -17,9 +17,9 @@
     -webkit-appearance: none;
     margin: 0;
   }
-}
 
-.input:hover,
-.input:focus {
-  border-color: var(--primary-color);
+  &:not(.readOnly):hover,
+  &:not(.readOnly):focus {
+    border-color: var(--primary-color);
+  }
 }

@@ -3,5 +3,5 @@ export interface PropTypes {
   max?: number;
   steps?: number[];
   value?: number;
-  onChange: (value: number) => void;
+  onChange?: (value: number) => void;
 }

@@ -51,21 +51,6 @@ describe('RangeInput', () => {
     expect(input).toHaveValue(value);
   });
 
-  it('should round values to the nearest step', async () => {
-    const user = userEvent.setup();
-
-    const { getByRole } = render(
-      <RangeInput min={min} max={max} steps={steps} value={value} onChange={mockOnChange} />,
-    );
-
-    const input = getByRole('spinbutton');
-
-    await user.clear(input);
-    await user.type(input, '57');
-
-    expect(mockOnChange).toHaveBeenCalledWith(60);
-  });
-
   it('should not exceed min and max range', async () => {
     const user = userEvent.setup();
 
@@ -94,5 +79,12 @@ describe('RangeInput', () => {
     await user.type(input, '75');
 
     expect(mockOnChange).toHaveBeenCalledWith(0);
+  });
+
+  it('should render a read only number input if steps are defined', async () => {
+    const { getByRole } = render(<RangeInput steps={steps} />);
+
+    const input = getByRole('spinbutton');
+    expect(input).toHaveAttribute('readonly');
   });
 });

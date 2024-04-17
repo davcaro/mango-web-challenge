@@ -29,4 +29,17 @@ describe('NumberInput', () => {
     await user.type(input, '12.34');
     expect(mockOnChange).toHaveBeenCalledWith(12.34);
   });
+
+  it('should render a number input as read only', async () => {
+    const user = userEvent.setup();
+    const mockOnChange = jest.fn();
+
+    const { getByRole } = render(<NumberInput onChange={mockOnChange} readOnly />);
+
+    const input = getByRole('spinbutton');
+    expect(input).toHaveAttribute('readonly');
+
+    await user.type(input, '12.34');
+    expect(mockOnChange).not.toHaveBeenCalled();
+  });
 });
