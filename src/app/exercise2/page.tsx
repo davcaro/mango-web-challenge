@@ -4,10 +4,12 @@ import { useEffect, useState } from 'react';
 import { useFetch } from '@/hooks';
 import { BasicRange } from '@/types/Range';
 import { Range } from '@/components/range';
+import { Loader } from '@/components/loader';
+import { Error } from '@/components/error';
 
 const Exercise2 = () => {
   const [values, setValues] = useState<BasicRange | null>(null);
-  const { data, isLoading, error } = useFetch<number[]>('fixed');
+  const { data, isLoading } = useFetch<number[]>('fixed');
 
   useEffect(() => {
     if (data && data.length >= 2) {
@@ -21,8 +23,8 @@ const Exercise2 = () => {
     return <Range steps={data} values={values} onChange={setValues} />;
   }
 
-  if (isLoading) return <div>Loading...</div>;
-  return <div>Error: {error?.message}</div>;
+  if (isLoading) return <Loader />;
+  return <Error />;
 };
 
 export default Exercise2;

@@ -58,6 +58,6 @@ describe('Exercise1', () => {
     const { getByText, findByText } = render(<Exercise1 />);
 
     expect(getByText('Loading...')).toBeInTheDocument();
-    expect(await findByText('Error: Network response was not ok')).toBeInTheDocument();
+    expect(await findByText('An error has occurred')).toBeInTheDocument();
   });
 });

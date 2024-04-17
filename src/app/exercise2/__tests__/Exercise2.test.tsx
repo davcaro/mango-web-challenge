@@ -54,6 +54,6 @@ describe('Exercise1', () => {
     const { getByText, findByText } = render(<Exercise2 />);
 
     expect(getByText('Loading...')).toBeInTheDocument();
-    expect(await findByText('Error: An unknown error occurred')).toBeInTheDocument();
+    expect(await findByText('An error has occurred')).toBeInTheDocument();
   });
 });
