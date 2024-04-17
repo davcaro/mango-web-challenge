@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useFetch } from '@/hooks';
 import { BasicRange } from '@/types/Range';
 import { Range } from '@/components/range';
 import { Loader } from '@/components/loader';
 import { Error } from '@/components/error';
 
-const Exercise1 = () => {
+const Exercise1: FC = () => {
   const [values, setValues] = useState<BasicRange | null>(null);
   const { data, isLoading } = useFetch<BasicRange>('basic');
 

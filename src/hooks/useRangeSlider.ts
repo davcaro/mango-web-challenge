@@ -1,6 +1,6 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
 import { BasicRange } from '@/types/Range';
-import { getNearestStepByBulletPosition, getValueWithinRange, round } from '@/utils/numbers-range';
+import { getNearestStepByBulletPosition, getValueWithinRange } from '@/utils/numbers-range';
 import { BulletType } from '@/components/range/Range.types';
 
 interface PropTypes {
@@ -12,7 +12,12 @@ interface PropTypes {
   onChange: (values: BasicRange) => void;
 }
 
-export const useRangeSlider = ({ sliderRef, min, max, steps, values, onChange }: PropTypes) => {
+interface ReturnType {
+  draggingBullet: BulletType | null;
+  onDragStart: (bullet: BulletType) => void;
+}
+
+export const useRangeSlider = ({ sliderRef, min, max, steps, values, onChange }: PropTypes): ReturnType => {
   const [draggingBullet, setDraggingBullet] = useState<BulletType | null>(null);
 
   const onBulletMove = useCallback(

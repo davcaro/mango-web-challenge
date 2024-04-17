@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { getNearestStep, getValueWithinRange, round } from '@/utils/numbers-range';
+import { getValueWithinRange, round } from '@/utils/numbers-range';
 import { PropTypes } from './RangeInput.types';
 import { NumberInput } from '@/components/number-input';
 

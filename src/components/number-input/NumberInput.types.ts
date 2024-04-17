@@ -1,10 +1,7 @@
-export interface PropTypes {
-  min?: number;
-  max?: number;
+import { InputHTMLAttributes } from 'react';
+
+export interface PropTypes extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   value?: number;
-  unit?: string;
   onChange?: (value: number) => void;
-  onFocus?: () => void;
-  onBlur?: () => void;
-  readOnly?: boolean;
+  unit?: string;
 }

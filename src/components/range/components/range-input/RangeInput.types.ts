@@ -1,4 +1,6 @@
-export interface PropTypes {
+import { InputHTMLAttributes } from 'react';
+
+export interface PropTypes extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   min?: number;
   max?: number;
   steps?: number[];

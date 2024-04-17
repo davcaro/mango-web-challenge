@@ -21,7 +21,11 @@ export const getNearestStep = (value: number, steps: number[]): number => {
   return closest;
 };
 
-export const getNearestStepByBulletPosition = (bulletPosition: number, sliderWidth: number, steps: number[]) => {
+export const getNearestStepByBulletPosition = (
+  bulletPosition: number,
+  sliderWidth: number,
+  steps: number[],
+): number => {
   const stepWidth = sliderWidth / (steps.length - 1);
   const stepsPositions = steps.map((step, index) => index * stepWidth);
   const nearestStep = getNearestStep(bulletPosition, stepsPositions);
